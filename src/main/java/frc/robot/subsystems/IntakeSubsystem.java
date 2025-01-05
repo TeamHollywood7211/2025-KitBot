@@ -57,4 +57,18 @@ public class IntakeSubsystem extends SubsystemBase {
   {
     intakeMotor.set(speed);
   }
+  public void motorFwd()
+  {
+    intakeMotor.set(1);
+  }
+  public void motorRev()
+  {
+    intakeMotor.set(-1);
+  }
+  public void motorOff()
+  {
+    intakeMotor.set(0);
+  }
+
+
 }

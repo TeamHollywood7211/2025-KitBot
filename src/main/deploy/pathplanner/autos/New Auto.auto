@@ -7,7 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "SimplePath"
+            "pathName": "testPath"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "dropPiece"
           }
         }
       ]
