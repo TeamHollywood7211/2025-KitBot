@@ -59,11 +59,11 @@ public class IntakeSubsystem extends SubsystemBase {
   }
   public void motorFwd()
   {
-    intakeMotor.set(1);
+    intakeMotor.set(0.25);
   }
   public void motorRev()
   {
-    intakeMotor.set(-1);
+    intakeMotor.set(-0.25);
   }
   public void motorOff()
   {

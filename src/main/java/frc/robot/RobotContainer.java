@@ -12,6 +12,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,7 +31,8 @@ public class RobotContainer {
     private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
 
-    private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
+    public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
+    public static double OriginalMaxSpeed = MaxSpeed;
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
     /* Setting up bindings for necessary control of the swerve drive platform */
@@ -45,14 +47,19 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     private final CommandXboxController joystick = new CommandXboxController(0);
-
+    private final CommandXboxController operatorStick = new CommandXboxController(1);
     
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    private final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, joystick);
+    private final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, operatorStick);
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
     
+    public void createFrontUsbCamera() {
+        CameraServer.startAutomaticCapture(); //Camera stuff :3
+    }
+
+
     public RobotContainer() {
         NamedCommands.registerCommand("act_intake_forward", new InstantCommand(m_IntakeSubsystem::motorFwd));
         NamedCommands.registerCommand("act_intake_reverse", new InstantCommand(m_IntakeSubsystem::motorRev));
@@ -63,7 +70,7 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Mode", autoChooser);
 
 
-
+        createFrontUsbCamera();
         configureBindings();
     }
     
@@ -84,6 +91,10 @@ public class RobotContainer {
             point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         ));
 
+        joystick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
+        joystick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal));
+        
+
         joystick.pov(0).whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(0.5).withVelocityY(0))
         );
@@ -91,11 +102,14 @@ public class RobotContainer {
             forwardStraight.withVelocityX(-0.5).withVelocityY(0))
         );
         joystick.pov(90).whileTrue(drivetrain.applyRequest(() ->
-            forwardStraight.withVelocityY(0.5).withVelocityY(0))
+            forwardStraight.withVelocityY(0.5).withVelocityX(0))
         );
         joystick.pov(270).whileTrue(drivetrain.applyRequest(() ->
-            forwardStraight.withVelocityY(-0.5).withVelocityY(0))
+            forwardStraight.withVelocityY(-0.5).withVelocityX(0))
         );
+
+        
+
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
@@ -105,13 +119,18 @@ public class RobotContainer {
         //joystick.start().and(joystick.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         // reset the field-centric heading on left bumper press
-        joystick.back().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        joystick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
 
-        joystick.leftTrigger().onTrue(m_IntakeCommand);
-        joystick.rightTrigger().onTrue(m_IntakeCommand);
-        joystick.leftTrigger().onFalse(m_IntakeCommand);
-        joystick.rightTrigger().onFalse(m_IntakeCommand);
+
+        operatorStick.leftTrigger().onTrue(m_IntakeCommand);
+        operatorStick.rightTrigger().onTrue(m_IntakeCommand);
+        operatorStick.leftTrigger().onFalse(m_IntakeCommand);
+        operatorStick.rightTrigger().onFalse(m_IntakeCommand);
+
+
+
+
         drivetrain.registerTelemetry(logger::telemeterize);
     }
 

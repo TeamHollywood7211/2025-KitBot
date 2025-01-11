@@ -14,6 +14,7 @@ public class IntakeCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IntakeSubsystem m_subsystem;
   private final CommandXboxController m_controller;
+  private final double speed = 0.25;
 
   /**
    * Creates a new ExampleCommand.
@@ -34,7 +35,7 @@ public class IntakeCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.setMotor(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis());
+    m_subsystem.setMotor((m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * speed);
   }
 
   // Called once the command ends or is interrupted.
