@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.IntakeCommandDouble;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -44,11 +45,18 @@ public class RobotContainer {
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
-    private final CommandXboxController joystick = new CommandXboxController(0);
+    private final CommandXboxController joystickDriver = new CommandXboxController(0);
+    private final CommandXboxController joystickOperator = new CommandXboxController(1);
 
-    
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    private final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, joystick);
+    private final IntakeCommand m_IntakeCommandDriver = new IntakeCommand(m_IntakeSubsystem, joystickDriver);
+    private final IntakeCommand m_IntakeCommandOperator = new IntakeCommand(m_IntakeSubsystem, joystickOperator);
+
+    private final IntakeCommandDouble m_IntakeCommandOne = new IntakeCommandDouble(m_IntakeSubsystem, 0.25);
+    private final IntakeCommandDouble m_IntakeCommandZero = new IntakeCommandDouble(m_IntakeSubsystem, 0.0);
+    private final IntakeCommandDouble m_IntakeCommandNeg = new IntakeCommandDouble(m_IntakeSubsystem, -0.25);
+
+    private double Limiter = 0;
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -70,30 +78,34 @@ public class RobotContainer {
     private void configureBindings() {
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
+        
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
+        
             drivetrain.applyRequest(() ->
-                drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(-joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
+                drive.withVelocityX(-joystickDriver.getLeftY() * MaxSpeed * 0.4 * (1-(joystickDriver.getLeftTriggerAxis() * 0.25))) // Drive forward with negative Y (forward)
+                    .withVelocityY(-joystickDriver.getLeftX() * MaxSpeed * 0.4 * (1-(joystickDriver.getLeftTriggerAxis() * 0.25))) // Drive left with negative X (left)
+                    .withRotationalRate(-joystickDriver.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
             )
         );
+
         
-        joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-        joystick.b().whileTrue(drivetrain.applyRequest(() ->
-            point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
+
+        joystickDriver.a().whileTrue(drivetrain.applyRequest(() -> brake));
+        joystickDriver.b().whileTrue(drivetrain.applyRequest(() ->
+            point.withModuleDirection(new Rotation2d(-joystickDriver.getLeftY(), -joystickDriver.getLeftX()))
         ));
 
-        joystick.pov(0).whileTrue(drivetrain.applyRequest(() ->
+        joystickDriver.pov(0).whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(0.5).withVelocityY(0))
         );
-        joystick.pov(180).whileTrue(drivetrain.applyRequest(() ->
+        joystickDriver.pov(180).whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(-0.5).withVelocityY(0))
         );
-        joystick.pov(90).whileTrue(drivetrain.applyRequest(() ->
+        joystickDriver.pov(90).whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityY(0.5).withVelocityY(0))
         );
-        joystick.pov(270).whileTrue(drivetrain.applyRequest(() ->
+        joystickDriver.pov(270).whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityY(-0.5).withVelocityY(0))
         );
 
@@ -105,14 +117,28 @@ public class RobotContainer {
         //joystick.start().and(joystick.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         // reset the field-centric heading on left bumper press
-        joystick.back().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        joystickDriver.back().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
 
-        joystick.leftTrigger().onTrue(m_IntakeCommand);
-        joystick.rightTrigger().onTrue(m_IntakeCommand);
-        joystick.leftTrigger().onFalse(m_IntakeCommand);
-        joystick.rightTrigger().onFalse(m_IntakeCommand);
-        drivetrain.registerTelemetry(logger::telemeterize);
+//        joystickDriver.leftTrigger().onTrue(m_IntakeCommandDriver);
+//        joystickDriver.rightTrigger().onTrue(m_IntakeCommandDriver);
+//        joystickDriver.leftTrigger().onFalse(m_IntakeCommandDriver);
+//        joystickDriver.rightTrigger().onFalse(m_IntakeCommandDriver);
+
+
+
+
+        joystickDriver.leftBumper().onTrue(m_IntakeCommandOne);
+        joystickDriver.rightBumper().onTrue(m_IntakeCommandNeg);
+        joystickDriver.leftBumper().onFalse(m_IntakeCommandZero);
+        joystickDriver.rightBumper().onFalse(m_IntakeCommandZero);
+
+        joystickOperator.leftTrigger().onTrue(m_IntakeCommandOperator);
+        joystickOperator.rightTrigger().onTrue(m_IntakeCommandOperator);
+        joystickOperator.leftTrigger().onFalse(m_IntakeCommandOperator);
+        joystickOperator.rightTrigger().onFalse(m_IntakeCommandOperator);        
+
+        //drivetrain.registerTelemetry(logger::telemeterize);
     }
 
     public Command getAutonomousCommand() {

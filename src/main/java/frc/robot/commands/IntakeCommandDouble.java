@@ -10,19 +10,20 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 /** An example command that uses an example subsystem. */
-public class IntakeCommand extends Command {
+public class IntakeCommandDouble extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IntakeSubsystem m_subsystem;
-  private final CommandXboxController m_controller;
+  private final double m_power;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public IntakeCommand(IntakeSubsystem subsystem, CommandXboxController controller) {
+  public IntakeCommandDouble(IntakeSubsystem subsystem, double power) {
     m_subsystem = subsystem;
-    m_controller = controller;
+    m_power = power;
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -34,7 +35,7 @@ public class IntakeCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.setMotor(0.25 * (m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()));
+    m_subsystem.setMotor(m_power);
   }
 
   // Called once the command ends or is interrupted.
