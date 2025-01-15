@@ -6,6 +6,7 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
@@ -61,14 +62,16 @@ public class RobotContainer {
 
 
     public RobotContainer() {
-        NamedCommands.registerCommand("act_intake_forward", new InstantCommand(m_IntakeSubsystem::motorFwd));
-        NamedCommands.registerCommand("act_intake_reverse", new InstantCommand(m_IntakeSubsystem::motorRev));
-        NamedCommands.registerCommand("act_intake_stop"   , new InstantCommand(m_IntakeSubsystem::motorOff));
-
-
+        //NamedCommands.registerCommand("act_intake_forward", new InstantCommand(m_IntakeSubsystem::motorFwd));
+        NamedCommands.registerCommand("act_intake_eject", new InstantCommand(m_IntakeSubsystem::motorRev));
+        NamedCommands.registerCommand("act_intake_off"   , new InstantCommand(m_IntakeSubsystem::motorOff));
+        
+        
+        
+        //NamedCommands.registerCommand("act_vision", drivetrain.addVisionMeasurement(null, Utils.fpgaToCurrentTime(llMeasurement.timestampSeconds)));
+        
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
-
 
         createFrontUsbCamera();
         configureBindings();
@@ -109,6 +112,8 @@ public class RobotContainer {
         );
 
         
+            
+
 
 
         // Run SysId routines when holding back/start and X/Y.
@@ -127,6 +132,7 @@ public class RobotContainer {
         operatorStick.rightTrigger().onTrue(m_IntakeCommand);
         operatorStick.leftTrigger().onFalse(m_IntakeCommand);
         operatorStick.rightTrigger().onFalse(m_IntakeCommand);
+
 
 
 

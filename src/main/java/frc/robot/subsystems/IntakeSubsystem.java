@@ -59,11 +59,11 @@ public class IntakeSubsystem extends SubsystemBase {
   }
   public void motorFwd()
   {
-    intakeMotor.set(0.25);
+    intakeMotor.set(0.25); //this is stupid
   }
   public void motorRev()
   {
-    intakeMotor.set(-0.25);
+    intakeMotor.set(-0.15); //this is the eject in auton
   }
   public void motorOff()
   {
