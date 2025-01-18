@@ -18,5 +18,6 @@ public final class Constants {
   } 
   public static class IntakeConstants {
     public static final int IntakeID = 51;
+    public static final int IRSignalID = 0;
   }
 }

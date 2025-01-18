@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.Auto_IntakeWaitForPiece;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
@@ -35,6 +36,8 @@ public class RobotContainer {
     public static double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
     public static double OriginalMaxSpeed = MaxSpeed;
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
+
+
 
     /* Setting up bindings for necessary control of the swerve drive platform */
     private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -52,6 +55,7 @@ public class RobotContainer {
     
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
     private final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, operatorStick);
+    private final Auto_IntakeWaitForPiece a_waitForPiece = new Auto_IntakeWaitForPiece(m_IntakeSubsystem);
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -65,6 +69,7 @@ public class RobotContainer {
         //NamedCommands.registerCommand("act_intake_forward", new InstantCommand(m_IntakeSubsystem::motorFwd));
         NamedCommands.registerCommand("act_intake_eject", new InstantCommand(m_IntakeSubsystem::motorRev));
         NamedCommands.registerCommand("act_intake_off"   , new InstantCommand(m_IntakeSubsystem::motorOff));
+        NamedCommands.registerCommand("act_wait_for_piece", a_waitForPiece);
         
         
         

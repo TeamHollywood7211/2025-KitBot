@@ -1,0 +1,37 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "debug_noMove"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_off"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}

@@ -7,6 +7,9 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkFlex;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -16,6 +19,7 @@ import frc.robot.RobotContainer;
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   SparkFlex intakeMotor = new SparkFlex(Constants.IntakeConstants.IntakeID, MotorType.kBrushless);
+  DigitalInput intakeIR = new DigitalInput(Constants.IntakeConstants.IRSignalID);
   public IntakeSubsystem() {}
 
   /**
@@ -44,7 +48,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    
+    SmartDashboard.putBoolean("Intake IR", getIR());
     // This method will be called once per scheduler run
   }
 
@@ -68,6 +72,11 @@ public class IntakeSubsystem extends SubsystemBase {
   public void motorOff()
   {
     intakeMotor.set(0);
+  }
+  
+  public boolean getIR()
+  {
+    return intakeIR.get();
   }
 
 
