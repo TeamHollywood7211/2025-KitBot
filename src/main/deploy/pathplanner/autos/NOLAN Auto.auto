@@ -19,13 +19,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "MOTHER CLEANING WHILE"
+            "pathName": "MOTHER CLEANING WHILE PART 1"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "ayden and nolan tests",
   "choreoAuto": false
 }

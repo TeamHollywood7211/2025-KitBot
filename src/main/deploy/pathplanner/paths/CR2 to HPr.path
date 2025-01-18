@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.10475,
-        "y": 3.2742499999999994
+        "x": 3.8555555555555547,
+        "y": 2.8510416666666663
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.8220000000000005,
-        "y": 2.620999999999999
+        "x": 3.572805555555555,
+        "y": 2.197791666666666
       },
       "isLocked": false,
       "linkedName": "Coral 6"
     },
     {
       "anchor": {
-        "x": 1.8101434426229508,
-        "y": 1.0100922131147536
+        "x": 1.5216145833333323,
+        "y": 2.2361111111111107
       },
       "prevControl": {
-        "x": 2.4633934426229507,
-        "y": 1.6828422131147533
+        "x": 2.1748645833333318,
+        "y": 2.9088611111111105
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "folder": "Human Player Right",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -123.6900675259798
+    "rotation": -122.34744349944201
   },
   "useDefaultConstraints": true
 }

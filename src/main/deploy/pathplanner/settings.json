@@ -8,7 +8,9 @@
     "Human Player Right",
     "NOLAN TEST"
   ],
-  "autoFolders": [],
+  "autoFolders": [
+    "ayden and nolan tests"
+  ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,

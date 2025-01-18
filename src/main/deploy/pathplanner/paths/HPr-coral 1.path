@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.3408390410999935,
-        "y": 3.9949486301369728
+        "x": 1.5216145833333323,
+        "y": 2.2361111111111107
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.340839041099988,
-        "y": 3.9949486301369728
+        "x": 1.8290798611111099,
+        "y": 3.4799479166666663
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "HP_Right"
     },
     {
       "anchor": {
-        "x": 6.596275684935609,
-        "y": 6.338955479452042
+        "x": 3.142795138888888,
+        "y": 4.038975694444444
       },
       "prevControl": {
-        "x": 0.5409246575383486,
-        "y": 6.955008561643821
+        "x": 2.1784722222222213,
+        "y": 3.8992187499999993
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "coral 1"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -164.2913621709842
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "NOLAN TEST",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -126.11934084947973
   },
   "useDefaultConstraints": true
 }

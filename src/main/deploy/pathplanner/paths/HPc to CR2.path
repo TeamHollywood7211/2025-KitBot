@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 4.10475,
-        "y": 3.2742499999999994
+        "x": 3.8555555555555547,
+        "y": 2.8510416666666663
       },
       "prevControl": {
-        "x": 3.6562500000000004,
-        "y": 2.728249999999999
+        "x": 3.407055555555555,
+        "y": 2.305041666666666
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -123.6900675259798
+    "rotation": -122.34744349944201
   },
   "reversed": false,
   "folder": "Human Player Center",

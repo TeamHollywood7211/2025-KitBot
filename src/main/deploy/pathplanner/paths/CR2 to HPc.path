@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.10475,
-        "y": 3.2742499999999994
+        "x": 3.8555555555555547,
+        "y": 2.8510416666666663
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.8220000000000005,
-        "y": 2.620999999999999
+        "x": 3.572805555555555,
+        "y": 2.197791666666666
       },
       "isLocked": false,
       "linkedName": "Coral 6"
@@ -48,7 +48,7 @@
   "folder": "Human Player Center",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -123.6900675259798
+    "rotation": -122.34744349944201
   },
   "useDefaultConstraints": true
 }
