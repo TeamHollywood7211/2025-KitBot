@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.4917500000000001,
-        "y": 1.3144999999999993
+        "x": 1.2467213114754097,
+        "y": 1.357735655737705
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.70075,
-        "y": 1.8507499999999992
+        "x": 2.4557213114754095,
+        "y": 1.8939856557377048
       },
       "isLocked": false,
       "linkedName": "HP_Center"
@@ -45,7 +45,7 @@
     "rotation": -123.6900675259798
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Human Player Center",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -126.11934084947973

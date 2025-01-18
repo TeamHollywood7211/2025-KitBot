@@ -3,16 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.10475,
-        "y": 3.2742499999999994
+        "x": 5.840250000000001,
+        "y": 4.015249999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.8220000000000005,
-        "y": 2.620999999999999
+        "x": 6.840250000000001,
+        "y": 4.015249999999999
       },
       "isLocked": false,
-      "linkedName": "Coral 6"
+      "linkedName": "Coral Right"
+    },
+    {
+      "anchor": {
+        "x": 5.62575,
+        "y": 2.3675
+      },
+      "prevControl": {
+        "x": 6.327749999999999,
+        "y": 2.8745000000000003
+      },
+      "nextControl": {
+        "x": 4.923750000000001,
+        "y": 1.8605
+      },
+      "isLocked": false,
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,15 +36,24 @@
         "y": 1.357735655737705
       },
       "prevControl": {
-        "x": 1.8999713114754098,
-        "y": 2.0304856557377047
+        "x": 1.8512213114754097,
+        "y": 1.6404856557377046
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "HP_Center"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0141078838173905,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 1.6647302904563694,
+      "rotationDegrees": -133.1768378356146
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -48,7 +73,7 @@
   "folder": "Human Player Center",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -123.6900675259798
+    "rotation": -1.3971810276903118
   },
   "useDefaultConstraints": true
 }

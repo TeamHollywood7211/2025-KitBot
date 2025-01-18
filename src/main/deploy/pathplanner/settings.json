@@ -2,7 +2,11 @@
   "robotWidth": 0.762,
   "robotLength": 0.762,
   "holonomicMode": true,
-  "pathFolders": [],
+  "pathFolders": [
+    "Human Player Center",
+    "Debug",
+    "Human Player Right"
+  ],
   "autoFolders": [],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,

@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.2467213114754097,
-        "y": 1.357735655737705
+        "x": 1.8101434426229508,
+        "y": 1.0100922131147536
       },
       "prevControl": {
-        "x": 1.8999713114754098,
-        "y": 2.0304856557377047
+        "x": 2.4633934426229507,
+        "y": 1.6828422131147533
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HP_Center"
+      "linkedName": "HP_Right"
     }
   ],
   "rotationTargets": [],
@@ -45,7 +45,7 @@
     "rotation": -126.11934084947973
   },
   "reversed": false,
-  "folder": "Human Player Center",
+  "folder": "Human Player Right",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -123.6900675259798

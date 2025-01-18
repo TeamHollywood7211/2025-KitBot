@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.10475,
-        "y": 3.2742499999999994
+        "x": 1.8101434426229508,
+        "y": 1.0100922131147536
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.8220000000000005,
-        "y": 2.620999999999999
+        "x": 3.0191434426229504,
+        "y": 1.5463422131147535
       },
       "isLocked": false,
-      "linkedName": "Coral 6"
+      "linkedName": "HP_Right"
     },
     {
       "anchor": {
-        "x": 1.2467213114754097,
-        "y": 1.357735655737705
+        "x": 4.10475,
+        "y": 3.2742499999999994
       },
       "prevControl": {
-        "x": 1.8999713114754098,
-        "y": 2.0304856557377047
+        "x": 3.6562500000000004,
+        "y": 2.728249999999999
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HP_Center"
+      "linkedName": "Coral 6"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -126.11934084947973
+    "rotation": -123.6900675259798
   },
   "reversed": false,
-  "folder": "Human Player Center",
+  "folder": "Human Player Right",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -123.6900675259798
+    "rotation": -126.11934084947973
   },
   "useDefaultConstraints": true
 }
