@@ -94,7 +94,6 @@ public class RobotContainer {
         joystick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
         joystick.leftTrigger().onFalse(new InstantCommand(drivetrain::setDriveNormal));
         
-
         joystick.pov(0).whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(0.5).withVelocityY(0))
         );
@@ -122,15 +121,33 @@ public class RobotContainer {
         joystick.button(7).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
 
+        if(joystick.x().getAsBoolean())
+        {
+
+            final var rot_limelight = limelight_aim_proportional();
+            final var forward_limelight = limelight_range_proportional();
+    
+            drivetrain.applyRequest(() ->
+            drive.withVelocityX(forward_limelight) // Drive forward with negative Y (forward)
+                .withVelocityY(0) // Drive left with negative X (left)
+                .withRotationalRate(rot_limelight) // Drive counterclockwise with negative X (left)
+                );
+
+        }
+    
+
 
         operatorStick.leftTrigger().onTrue(m_IntakeCommand);
         operatorStick.rightTrigger().onTrue(m_IntakeCommand);
         operatorStick.leftTrigger().onFalse(m_IntakeCommand);
         operatorStick.rightTrigger().onFalse(m_IntakeCommand);
 
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes
         drivetrain.registerTelemetry(logger::telemeterize);
     }
 
@@ -138,4 +155,38 @@ public class RobotContainer {
         /* Run the path selected from the auto chooser */
         return autoChooser.getSelected();
     }
+
+
+    double limelight_range_proportional()
+    {    
+      double kP = .1;
+      double targetingForwardSpeed = LimelightHelpers.getTY("limelight") * kP;
+      targetingForwardSpeed *= MaxSpeed;
+      targetingForwardSpeed *= -1.0;
+      return targetingForwardSpeed;
+    }
+
+    double limelight_aim_proportional()
+    {    
+      // kP (constant of proportionality)
+      // this is a hand-tuned number that determines the aggressiveness of our proportional control loop
+      // if it is too high, the robot will oscillate.
+      // if it is too low, the robot will never reach its target
+      // if the robot never turns in the correct direction, kP should be inverted.
+      double kP = .035;
+  
+      // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
+      // your limelight 3 feed, tx should return roughly 31 degrees.
+      double targetingAngularVelocity = LimelightHelpers.getTX("limelight") * kP;
+  
+      // convert to radians per second for our drive method
+      targetingAngularVelocity *= MaxAngularRate;
+  
+      //invert since tx is positive when the target is to the right of the crosshair
+      targetingAngularVelocity *= -1.0;
+  
+      return targetingAngularVelocity;
+    }
+
+
 }
