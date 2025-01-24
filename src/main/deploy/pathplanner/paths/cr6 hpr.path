@@ -4,15 +4,31 @@
     {
       "anchor": {
         "x": 3.8555555555555547,
-        "y": 2.8510416666666663
+        "y": 5.2548611111111105
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.572805555555555,
-        "y": 2.197791666666666
+        "x": 2.8073784722222213,
+        "y": 5.073177083333333
       },
       "isLocked": false,
-      "linkedName": "Coral 6"
+      "linkedName": "cr6"
+    },
+    {
+      "anchor": {
+        "x": 1.8989583333333322,
+        "y": 3.8992187499999993
+      },
+      "prevControl": {
+        "x": 2.1225694444444434,
+        "y": 4.737760416666666
+      },
+      "nextControl": {
+        "x": 1.675347222222221,
+        "y": 3.0606770833333323
+      },
+      "isLocked": false,
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +36,8 @@
         "y": 2.2361111111111107
       },
       "prevControl": {
-        "x": 2.1748645833333313,
-        "y": 2.908861111111111
+        "x": 1.5425781249999988,
+        "y": 2.5924913194444437
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,10 +61,10 @@
     "rotation": -126.11934084947973
   },
   "reversed": false,
-  "folder": "Human Player Right",
+  "folder": "NOLAN TEST",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -122.34744349944201
+    "rotation": 123.11134196037203
   },
   "useDefaultConstraints": true
 }

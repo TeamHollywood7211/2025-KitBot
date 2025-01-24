@@ -3,57 +3,48 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.840250000000001,
-        "y": 4.015249999999999
+        "x": 1.5216145833333323,
+        "y": 2.2361111111111107
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.840250000000001,
-        "y": 4.015249999999999
+        "x": 1.6473958333333323,
+        "y": 3.787413194444444
       },
       "isLocked": false,
-      "linkedName": "Coral Right"
+      "linkedName": "HP_Right"
     },
     {
       "anchor": {
-        "x": 5.62575,
-        "y": 2.3675
+        "x": 1.9688368055555545,
+        "y": 4.611979166666666
       },
       "prevControl": {
-        "x": 6.327749999999999,
-        "y": 2.8745000000000003
+        "x": 1.4903388731716953,
+        "y": 3.9091853284778733
       },
       "nextControl": {
-        "x": 4.923750000000001,
-        "y": 1.8605
+        "x": 2.4160590277777767,
+        "y": 5.268836805555555
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.5216145833333323,
-        "y": 2.2361111111111107
+        "x": 3.8555555555555547,
+        "y": 5.2548611111111105
       },
       "prevControl": {
-        "x": 2.126114583333333,
-        "y": 2.5188611111111117
+        "x": 2.83532986111111,
+        "y": 5.212934027777778
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HP_Right"
+      "linkedName": "cr6"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 1.0141078838173905,
-      "rotationDegrees": 0.0
-    },
-    {
-      "waypointRelativePos": 1.6647302904563694,
-      "rotationDegrees": -133.1768378356146
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -67,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -126.11934084947973
+    "rotation": 123.11134196037203
   },
   "reversed": false,
-  "folder": "Human Player Right",
+  "folder": "NOLAN TEST",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -1.3971810276903118
+    "rotation": -126.11934084947973
   },
   "useDefaultConstraints": true
 }

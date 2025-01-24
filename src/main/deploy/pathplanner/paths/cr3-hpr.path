@@ -3,16 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.8555555555555547,
-        "y": 2.8510416666666663
+        "x": 5.123758561643836,
+        "y": 2.8529965753424653
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.572805555555555,
-        "y": 2.197791666666666
+        "x": 4.540364583333332,
+        "y": 2.124305555555555
       },
       "isLocked": false,
-      "linkedName": "Coral 6"
+      "linkedName": "cr3"
+    },
+    {
+      "anchor": {
+        "x": 3.743749999999999,
+        "y": 2.012499999999999
+      },
+      "prevControl": {
+        "x": 4.195688106644399,
+        "y": 2.1369467250180234
+      },
+      "nextControl": {
+        "x": 3.158858585178155,
+        "y": 1.8514429437447073
+      },
+      "isLocked": false,
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +36,8 @@
         "y": 2.2361111111111107
       },
       "prevControl": {
-        "x": 2.1748645833333313,
-        "y": 2.908861111111111
+        "x": 2.3461805555555544,
+        "y": 1.914670138888888
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,10 +61,10 @@
     "rotation": -126.11934084947973
   },
   "reversed": false,
-  "folder": "Human Player Right",
+  "folder": "NOLAN TEST",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -122.34744349944201
+    "rotation": -60.461217740441825
   },
   "useDefaultConstraints": true
 }
