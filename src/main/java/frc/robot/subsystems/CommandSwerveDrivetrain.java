@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
@@ -162,7 +163,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
         configureAutoBuilder();
     }
-
+    
     /**
      * Constructs a CTRE SwerveDrivetrain using the specified constants.
      * <p>
@@ -247,19 +248,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
 
-    public void followAprilTag(){
-        final var rot_limelight = RobotContainer.limelight_aim_proportional();
-        final var forward_limelight = RobotContainer.limelight_range_proportional();
-            
-        SmartDashboard.putNumber("Limelight Rot", rot_limelight);
-        SmartDashboard.putNumber("Limelight Fwd", forward_limelight);
-            
-        applyRequest(() ->
-        RobotContainer.drive.withVelocityX(MathUtil.clamp(forward_limelight, -1, 1)) // Drive forward with negative Y (forward)
-            .withVelocityY(0) // Drive left with negative X (left)
-            .withRotationalRate(rot_limelight) // Drive counterclockwise with negative X (left)
-            );
-    }
+
 
     /**
      * Runs the SysId Dynamic test in the given direction for the routine
@@ -315,5 +304,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public void setDriveSlow()
     {
         RobotContainer.MaxSpeed = RobotContainer.OriginalMaxSpeed/4;
+    }
+    public Rotation2d getGyro(){
+        Pigeon2 gyro = getPigeon2();
+        return gyro.getRotation2d();
     }
 }
