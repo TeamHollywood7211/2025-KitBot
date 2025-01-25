@@ -1,97 +1,207 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
-package frc.robot;
-
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
+/**
+ * Phoenix Software License Agreement
+ *
+ * Copyright (C) Cross The Road Electronics.  All rights
+ * reserved.
+ * 
+ * Cross The Road Electronics (CTRE) licenses to you the right to 
+ * use, publish, and distribute copies of CRF (Cross The Road) firmware files (*.crf) and 
+ * Phoenix Software API Libraries ONLY when in use with CTR Electronics hardware products.
+ * 
+ * THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
+ * WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
+ * LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+ * CROSS THE ROAD ELECTRONICS BE LIABLE FOR ANY INCIDENTAL, SPECIAL, 
+ * INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
+ * PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
+ * BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
+ * THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
+ * SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
+ * (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
+ */
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
- * project.
+ * Description:
+ * Example plays music sourced from a MIDI file through several Talon FXs.
+ * Use Tuner to convert a MIDI file into a CHRP (chirp) file. 
+ * These are then placed into the deploy folder of this project so that they are copied into the robot controller (on deploy).
+ * 
+ * Supported Version:
+ * 	- Talon FX: 20.2.3.0 or newer
+ *
+ * Feature Video: https://youtu.be/MTGScSS_iaQ
+ */
+package frc.robot;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.ctre.phoenix6.Orchestra;
+import com.ctre.phoenix6.hardware.TalonFX;
+//import com.ctre.phoenix6.motorcontrol.can.WPI_TalonFX;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.TimedRobot;
+
+/**
+ * Top level Robot class 
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
 
-  @SuppressWarnings("unused")
-  private RobotContainer m_robotContainer;
+    /* The orchestra object that holds all the instruments */
+    Orchestra _orchestra;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
-  @Override
-  public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
-    System.out.println("Initialized");
-  }
+    /* Talon FXs to play music through.  
+    More complex music MIDIs will contain several tracks, requiring multiple instruments.  */
+    TalonFX [] _fxes =  { new TalonFX(5, "rio") };
 
-  /**
-   * This function is called every robot packet, no matter the mode. Use this for items like
-   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
-   * SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
-    // block in order for anything in the Command-based framework to work.
-    CommandScheduler.getInstance().run();
-  }
+    /* An array of songs that are available to be played, can you guess the song/artists? */
+  String[] _songs = new String[] {
+    "song1.chrp",
+    "song2.chrp",
+    "song3.chrp",
+    "song4.chrp",
+    "song5.chrp",
+    "song6.chrp",
+    "song7.chrp",
+    "song8.chrp",
+    "song9.chrp", /* the remaining songs play better with three or more FXs */
+    "song10.chrp",
+    "song11.chrp",
+  };
 
-  /** This function is called once each time the robot enters Disabled mode. */
-  @Override
-  public void disabledInit() {}
+    /* track which song is selected for play */
+    int _songSelection = 0;
 
-  @Override
-  public void disabledPeriodic() {}
+    /* overlapped actions */
+    int _timeToPlayLoops = 0;
 
-  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
-  @Override
-  public void autonomousInit() {
-    m_autonomousCommand = null;
+    /* joystick vars */
+    Joystick _joy;
+    int _lastButton = 0;
+    int _lastPOV = 0;
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+    //------------- joystick routines --------------- //
+    /** @return 0 if no button pressed, index of button otherwise. */
+    int getButton() {
+        for (int i = 1; i < 9; ++i) {
+            if (_joy.getRawButton(i)) {
+                return i;
+            }
+        }
+        return 0;
     }
-  }
 
-  /** This function is called periodically during autonomous. */
-  @Override
-  public void autonomousPeriodic() {}
+    void LoadMusicSelection(int offset)
+    {
+        /* increment song selection */
+        _songSelection += offset;
+        /* wrap song index in case it exceeds boundary */
+        if (_songSelection >= _songs.length) {
+            _songSelection = 0;
+        }
+        if (_songSelection < 0) {
+            _songSelection = _songs.length - 1;
+        }
+        /* load the chirp file */
+        _orchestra.loadMusic(_songs[_songSelection]); 
 
-  @Override
-  public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+        /* print to console */
+        System.out.println("Song selected is: " + _songs[_songSelection] + ".  Press left/right on d-pad to change.");
+        
+        /* schedule a play request, after a delay.  
+            This gives the Orchestra service time to parse chirp file.
+            If play() is called immedietely after, you may get an invalid action error code. */
+        _timeToPlayLoops = 10;
     }
-  }
 
-  /** This function is called periodically during operator control. */
-  @Override
-  public void teleopPeriodic() {}
+    //------------- robot routines --------------- //
+    /**
+     * This function is run when the robot is first started up and should be used
+     * for any initialization code.
+     */
+    @Override
+    public void robotInit() {
+        /* A list of TalonFX's that are to be used as instruments */
+        ArrayList<TalonFX> _instruments = new ArrayList<TalonFX>();    
+        
+        /* Initialize the TalonFX's to be used */
+        for (int i = 0; i < _fxes.length; ++i) {
+            _instruments.add(_fxes[i]);
+        }
+        /* Create the orchestra with the TalonFX instruments */
+        _orchestra = new Orchestra();//(_instruments);
+        _joy = new Joystick(0);
 
-  @Override
-  public void testInit() {
-    // Cancels all running commands at the start of test mode.
-    CommandScheduler.getInstance().cancelAll();
-  }
+        _orchestra.addInstrument(_fxes[0]);
+    }
+    
+    @Override
+    public void teleopInit() {
+        
+        /* load whatever file is selected */
+        LoadMusicSelection(0);
+    }
 
-  /** This function is called periodically during test mode. */
-  @Override
-  public void testPeriodic() {}
+    @Override
+    public void teleopPeriodic() {
+        /* poll gamepad */
+        int btn = getButton();
+        int currentPOV = _joy.getPOV();
+
+        /* if song selection changed, auto-play it */
+        if (_timeToPlayLoops > 0) {
+            --_timeToPlayLoops;
+            if (_timeToPlayLoops == 0) {
+                /* scheduled play request */
+                System.out.println("Auto-playing song.");
+                _orchestra.play();
+            }
+        }
+
+
+        /* has a button been pressed? */
+        if (_lastButton != btn) {
+            _lastButton = btn;
+
+            switch (btn) {
+                case 1: /* toggle play and paused */
+                    if (_orchestra.isPlaying()) {
+                        _orchestra.pause();
+                        System.out.println("Song paused");
+                    }  else {
+                        _orchestra.play();
+                        System.out.println("Playing song...");
+                    }
+                    break;
+                    
+                case 2: /* toggle play and stop */
+                    if (_orchestra.isPlaying()) {
+                        _orchestra.stop();
+                        System.out.println("Song stopped.");
+                    }  else {
+                        _orchestra.play();
+                        System.out.println("Playing song...");
+                    }
+                    break;
+            }
+        }
+
+        /* has POV/D-pad changed? */
+        if (_lastPOV != currentPOV) {
+            _lastPOV = currentPOV;
+
+            switch (currentPOV) {
+                case 90:
+                    /* increment song selection */
+                    LoadMusicSelection(+1);
+                    break;
+                case 270:
+                    /* decrement song selection */
+                    LoadMusicSelection(-1);
+                    break;
+            }
+        }
+    }
 }
