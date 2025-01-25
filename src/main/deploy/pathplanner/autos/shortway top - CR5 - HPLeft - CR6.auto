@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "move an inch"
+            "pathName": "top start to cr5"
           }
         },
         {
@@ -19,7 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "coral 4 to hcr short swing cutting"
+            "pathName": "CR5-HP TOP"
           }
         },
         {
@@ -31,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "hpr-cr3"
+            "pathName": "hpL-cr6"
           }
         },
         {
@@ -43,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "cr3-hpr"
+            "pathName": "cr6-HP TOP"
           }
         },
         {
@@ -55,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "hpr-cr3"
+            "pathName": "hpL-cr6"
           }
         },
         {
@@ -67,7 +67,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "cr3-hpr"
+            "pathName": "cr6-HP TOP"
           }
         },
         {
@@ -79,7 +79,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "hpr-cr3"
+            "pathName": "hpL-cr6"
           }
         },
         {
@@ -92,6 +92,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "ayden and nolan tests",
+  "folder": "top start going short distance",
   "choreoAuto": false
 }

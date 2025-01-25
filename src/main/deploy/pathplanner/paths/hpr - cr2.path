@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.4559075342465753,
-        "y": 1.7561215753424653
+        "x": 2.5216145833333323,
+        "y": 2.2361111111111107
       },
       "isLocked": false,
       "linkedName": "HP_Right"
     },
     {
       "anchor": {
-        "x": 5.123758561643836,
-        "y": 2.8529965753424653
+        "x": 3.8555555555555547,
+        "y": 2.8510416666666663
       },
       "prevControl": {
-        "x": 4.4175513698630136,
-        "y": 2.041609589041096
+        "x": 3.080265410958904,
+        "y": 2.3270976027397263
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "cr3"
+      "linkedName": "coral 2"
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -60.461217740441825
+    "rotation": -122.34744349944201
   },
   "reversed": false,
   "folder": "NOLAN TEST",

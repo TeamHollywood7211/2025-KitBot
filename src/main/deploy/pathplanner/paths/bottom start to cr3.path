@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.5216145833333323,
-        "y": 2.2361111111111107
+        "x": 7.542893835616439,
+        "y": 1.7260702054794523
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.4559075342465753,
-        "y": 1.7561215753424653
+        "x": 6.2807363013698625,
+        "y": 1.8763270547945203
       },
       "isLocked": false,
-      "linkedName": "HP_Right"
+      "linkedName": "bottom start"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 2.8529965753424653
       },
       "prevControl": {
-        "x": 4.4175513698630136,
-        "y": 2.041609589041096
+        "x": 6.160530821917807,
+        "y": 1.9664811643835616
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,10 +45,10 @@
     "rotation": -60.461217740441825
   },
   "reversed": false,
-  "folder": "NOLAN TEST",
+  "folder": "bottom start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -126.11934084947973
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

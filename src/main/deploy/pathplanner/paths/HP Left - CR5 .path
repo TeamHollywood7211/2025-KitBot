@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.8555555555555547,
-        "y": 2.8510416666666663
+        "x": 1.8151041666666656,
+        "y": 6.638454861111111
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.572805555555555,
-        "y": 2.197791666666666
+        "x": 3.0030381944444433,
+        "y": 6.6943576388888895
       },
       "isLocked": false,
-      "linkedName": "Coral 6"
+      "linkedName": "hpLeft"
     },
     {
       "anchor": {
-        "x": 1.5216145833333323,
-        "y": 2.2361111111111107
+        "x": 5.197222222222222,
+        "y": 5.143055555555556
       },
       "prevControl": {
-        "x": 2.1748645833333313,
-        "y": 2.908861111111111
+        "x": 5.099392361111111,
+        "y": 5.897743055555555
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HP_Right"
+      "linkedName": "cr5"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -126.11934084947973
+    "rotation": 60.101098161385444
   },
   "reversed": false,
-  "folder": "Human Player Right",
+  "folder": "NOLAN TEST",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -122.34744349944201
+    "rotation": 129.80557109226518
   },
   "useDefaultConstraints": true
 }

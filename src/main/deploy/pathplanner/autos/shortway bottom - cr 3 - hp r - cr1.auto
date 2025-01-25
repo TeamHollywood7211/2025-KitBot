@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "move an inch"
+            "pathName": "bottom start to cr3"
           }
         },
         {
@@ -17,39 +17,21 @@
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 0.5
+            "pathName": "cr3-hpr"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "act_intake_off"
+            "name": "act_wait_for_piece"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CR4 to HPc"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "HPc to CR2"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
+            "pathName": "HPr-coral 1"
           }
         },
         {
@@ -59,21 +41,57 @@
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 0.5
+            "pathName": "c1-HP Right"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "act_intake_off"
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HPr-coral 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "c1-HP Right"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HPr-coral 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "center start going to hpR",
+  "folder": "bottom start short distance",
   "choreoAuto": false
 }
