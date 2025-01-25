@@ -18,6 +18,8 @@ import com.ctre.phoenix.led.TwinkleOffAnimation.TwinkleOffPercent;
 
 public class CANdleSystem extends SubsystemBase {
     private final CANdle m_candle = new CANdle(Constants.CANdleID, "rio");
+    private final CANdle m_candle2 = new CANdle(Constants.CANdleID2, "rio");
+
     private final int LedCount = 300;
     private XboxController joystick;
 
@@ -47,6 +49,8 @@ public class CANdleSystem extends SubsystemBase {
         configAll.brightnessScalar = 0.1;
         configAll.vBatOutputMode = VBatOutputMode.Modulated;
         m_candle.configAllSettings(configAll, 100);
+        m_candle2.configAllSettings(configAll, 100);
+
     }
 
     public void incrementAnimation() {
@@ -86,10 +90,10 @@ public class CANdleSystem extends SubsystemBase {
     public double get5V() { return m_candle.get5VRailVoltage(); }
     public double getCurrent() { return m_candle.getCurrent(); }
     public double getTemperature() { return m_candle.getTemperature(); }
-    public void configBrightness(double percent) { m_candle.configBrightnessScalar(percent, 0); }
-    public void configLos(boolean disableWhenLos) { m_candle.configLOSBehavior(disableWhenLos, 0); }
-    public void configLedType(LEDStripType type) { m_candle.configLEDType(type, 0); }
-    public void configStatusLedBehavior(boolean offWhenActive) { m_candle.configStatusLedState(offWhenActive, 0); }
+    public void configBrightness(double percent) { m_candle.configBrightnessScalar(percent*0.5, 0); m_candle2.configBrightnessScalar(percent*0.5, 0);}
+    public void configLos(boolean disableWhenLos) { m_candle.configLOSBehavior(disableWhenLos, 0); m_candle2.configLOSBehavior(disableWhenLos, 0); }
+    public void configLedType(LEDStripType type) { m_candle.configLEDType(type, 0); m_candle2.configLEDType(type, 0); }
+    public void configStatusLedBehavior(boolean offWhenActive) { m_candle.configStatusLedState(offWhenActive, 0); m_candle2.configStatusLedState(offWhenActive, 0); }
 
     public void changeAnimation(AnimationTypes toChange) {
         m_currentAnimation = toChange;
@@ -137,10 +141,18 @@ public class CANdleSystem extends SubsystemBase {
             m_candle.setLEDs((int)(joystick.getLeftTriggerAxis() * 255), 
                               (int)(joystick.getRightTriggerAxis() * 255), 
                               (int)(joystick.getLeftX() * 255));
+            m_candle2.setLEDs((int)(joystick.getLeftTriggerAxis() * 255), 
+                              (int)(joystick.getRightTriggerAxis() * 255), 
+                              (int)(joystick.getLeftX() * 255));
+
         } else {
             m_candle.animate(m_toAnimate);
+            m_candle2.animate(m_toAnimate);
+            
         }
         m_candle.modulateVBatOutput(joystick.getRightY());
+        m_candle2.animate(m_toAnimate);
+
     }
 
     @Override

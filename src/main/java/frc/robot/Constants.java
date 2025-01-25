@@ -36,6 +36,6 @@ public final class Constants {
     public static final int CurrentButton = XboxController.Button.kX.value;
     public static final int TemperatureButton = XboxController.Button.kY.value;
 
-  public static final int CANdleID = 52;
+  public static final int CANdleID = 53;
   public static final int CANdleID2 = 51;  
 }
