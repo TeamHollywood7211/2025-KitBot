@@ -7,13 +7,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "testPath"
+            "pathName": "move an inch"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": null
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "ayden and nolan tests",
   "choreoAuto": false
 }

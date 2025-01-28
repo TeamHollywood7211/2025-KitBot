@@ -6,6 +6,7 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
@@ -26,9 +27,11 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
 import frc.robot.commands.ClimberCommand;
+
 import frc.robot.commands.IntakeCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -47,6 +50,8 @@ public class RobotContainer {
     private static double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
                                                                                              // second max angular
                                                                                              // velocity
+
+
 
     /* Setting up bindings for necessary control of the swerve drive platform */
     public final static SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -71,11 +76,13 @@ public class RobotContainer {
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
     private final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, operatorStick);
+
     private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, operatorStick);
     // PID
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
    
+
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -85,9 +92,11 @@ public class RobotContainer {
     }
 
     public RobotContainer() {
+
         NamedCommands.registerCommand("act_intake_forward", new InstantCommand(m_IntakeSubsystem::motorFwd));
         NamedCommands.registerCommand("act_intake_reverse", new InstantCommand(m_IntakeSubsystem::motorRev));
         NamedCommands.registerCommand("act_intake_stop",    new InstantCommand(m_IntakeSubsystem::motorOff));
+
 
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
@@ -155,7 +164,9 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
         
+
     }
+
 
     public Command getAutonomousCommand() {
         /* Run the path selected from the auto chooser */
@@ -199,7 +210,6 @@ public class RobotContainer {
         final var rot_limelight = RobotContainer.limelight_aim_proportional();
 
         double current_rotation = drivetrain.getGyro().getDegrees();
-
         double pid_output = ll_rotatePID.calculate(current_rotation, current_rotation + rot_limelight);
 
         SmartDashboard.putNumber("Limelight Rot", rot_limelight);
@@ -209,6 +219,7 @@ public class RobotContainer {
                 forwardStraight.withVelocityX(MathUtil.clamp(forward_limelight, -.5, .5))
                         .withVelocityY(0)
                         .withRotationalRate(MathUtil.clamp(pid_output, -1, 1)));
+
     }
 
     public void autoToPosition(double[] positions) // Should in theory move us to a pose of x, y. Waiting till we have

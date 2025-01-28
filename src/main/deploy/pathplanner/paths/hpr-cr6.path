@@ -1,0 +1,70 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.5216145833333323,
+        "y": 2.2361111111111107
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.6473958333333323,
+        "y": 3.787413194444444
+      },
+      "isLocked": false,
+      "linkedName": "HP_Right"
+    },
+    {
+      "anchor": {
+        "x": 1.9688368055555545,
+        "y": 4.611979166666666
+      },
+      "prevControl": {
+        "x": 1.4903388731716953,
+        "y": 3.9091853284778733
+      },
+      "nextControl": {
+        "x": 2.4160590277777767,
+        "y": 5.268836805555555
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.8555555555555547,
+        "y": 5.2548611111111105
+      },
+      "prevControl": {
+        "x": 2.83532986111111,
+        "y": 5.212934027777778
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "cr6"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 123.11134196037203
+  },
+  "reversed": false,
+  "folder": "NOLAN TEST",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -126.11934084947973
+  },
+  "useDefaultConstraints": true
+}

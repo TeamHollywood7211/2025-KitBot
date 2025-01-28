@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 3.8555555555555547,
+        "y": 2.8510416666666663
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.572805555555555,
+        "y": 2.197791666666666
+      },
+      "isLocked": false,
+      "linkedName": "Coral 6"
+    },
+    {
+      "anchor": {
+        "x": 1.2467213114754097,
+        "y": 1.357735655737705
+      },
+      "prevControl": {
+        "x": 1.8999713114754098,
+        "y": 2.0304856557377047
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "HP_Center"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -126.11934084947973
+  },
+  "reversed": false,
+  "folder": "Human Player Center",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -122.34744349944201
+  },
+  "useDefaultConstraints": true
+}

@@ -1,0 +1,97 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "bottom start-cr2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "NO USE CR2 to HPr"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HPr-coral 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "c1-HP Right"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HPr-coral 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "c1-HP Right"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HPr-coral 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "bottom start short distance",
+  "choreoAuto": false
+}

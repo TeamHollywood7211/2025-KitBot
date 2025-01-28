@@ -1,0 +1,97 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "top start to cr5"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CR5-HP TOP"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HP Left - CR5 "
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CR5-HP TOP"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HP Left - CR5 "
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CR5-HP TOP"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HP Left - CR5 "
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "top start going short distance",
+  "choreoAuto": false
+}

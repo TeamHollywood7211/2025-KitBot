@@ -7,13 +7,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "testPath"
+            "pathName": "debug_noMove"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "dropPiece"
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_off"
           }
         }
       ]

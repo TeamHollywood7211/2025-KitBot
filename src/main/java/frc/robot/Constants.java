@@ -14,6 +14,7 @@ package frc.robot;
  */
 public final class Constants {
   public static class IntakeConstants {
+
     public static final int intakeID = 51;
     public static final double autoMotorSpeed = 0.25;   //For the intake when run through intakeFwd(), intakeRev(), aka auton
     public static final double teleopMotorSpeed = 0.25;  //For when we control the robot with an actual controller. 
@@ -63,5 +64,6 @@ public final class Constants {
     public static double[] leftHumanPlayerRight  = {1.69, 0.591, 57.724        };
     public static double[] rightHumanPlayerLeft  = {0.659, 6.728, 162. -49.399 };
     public static double[] rightHumanPlayerRight = {1.714, 7.483, -49.399     };
+
   }
 }

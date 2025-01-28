@@ -1,0 +1,97 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "move an inch"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "coral 4 to hcr short swing cutting"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "hpr-cr3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "cr3-hpr"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "hpr-cr3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "cr3-hpr"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_wait_for_piece"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "hpr-cr3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_eject"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "center start going to hpR",
+  "choreoAuto": false
+}
