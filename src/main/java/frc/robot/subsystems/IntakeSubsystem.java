@@ -13,13 +13,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
+import frc.robot.Constants.IntakeConstants;
+
 
 
 public class IntakeSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  SparkFlex intakeMotor = new SparkFlex(Constants.IntakeConstants.IntakeID, MotorType.kBrushless);
-  DigitalInput intakeIR = new DigitalInput(Constants.IntakeConstants.IRSignalID);
+
+  /** Creates a new Intake Subsystem. */
+  SparkFlex intakeMotor = new SparkFlex(Constants.IntakeConstants.intakeID, MotorType.kBrushless); //Creates the one intake motor 
+
   public IntakeSubsystem() {}
 
   /**
@@ -28,23 +30,14 @@ public class IntakeSubsystem extends SubsystemBase {
    * @return a command
    */
   public Command exampleMethodCommand() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
+
     return runOnce(
         () -> {
           /* one-time action goes here */
         });
   }
 
-  /**
-   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
-   *
-   * @return value of some boolean subsystem state, such as a digital sensor.
-   */
-  public boolean exampleCondition() {
-    // Query some boolean state, such as a digital sensor.
-    return false;
-  }
+
 
   @Override
   public void periodic() {
@@ -57,17 +50,17 @@ public class IntakeSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public void setMotor(double speed)
+  public void setMotor(double speed) //Just some really basic stuff for adjusting motor, running fwd, etc. 
   {
     intakeMotor.set(speed);
   }
   public void motorFwd()
   {
-    intakeMotor.set(0.25); //this is stupid
+    intakeMotor.set(IntakeConstants.autoMotorSpeed);
   }
   public void motorRev()
   {
-    intakeMotor.set(-0.15); //this is the eject in auton
+    intakeMotor.set(-IntakeConstants.autoMotorSpeed);
   }
   public void motorOff()
   {
