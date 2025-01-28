@@ -113,7 +113,7 @@ public class RobotContainer {
 
         );
         m_IntakeSubsystem.setDefaultCommand(m_IntakeCommand); 
-        //m_ClimberSubsystem.setDefaultCommand(m_ClimberCommand);
+        m_ClimberSubsystem.setDefaultCommand(m_ClimberCommand);
 
         driverStick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         driverStick.leftTrigger().onTrue(new InstantCommand(drivetrain::setDriveSlow));
@@ -143,9 +143,9 @@ public class RobotContainer {
         //autoStick.b().onTrue(m_MusicSubsystem.runOnce(() -> m_MusicSubsystem.playSong("chirp/portal.chrp")));
         // OPERATOR STICK
 
-        operatorStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::setArmHigh));
-        operatorStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::setArmLow)) ;
-        operatorStick.x().onTrue(new InstantCommand(m_ClimberSubsystem::setArmClimb)) ;
+        operatorStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::setArmHigh))  ;
+        operatorStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::setArmClimb))   ;
+        operatorStick.povLeft().onTrue(new InstantCommand(m_ClimberSubsystem::setArmClimb)) ;
         //operatorStick.leftTrigger().onTrue(m_IntakeCommand);
         //operatorStick.rightTrigger().onTrue(m_IntakeCommand);
         //operatorStick.leftTrigger().onFalse(m_IntakeCommand);

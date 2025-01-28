@@ -53,6 +53,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    ArmSetpoint = MathUtil.clamp(ArmSetpoint, 0, 120);
     double currentPos = ArmEncoder.getPosition();
     SmartDashboard.putNumber("New Arm Position", currentPos);
     SmartDashboard.putNumber("New Arm Target Pos", ArmSetpoint);
@@ -64,10 +65,13 @@ public class ClimberSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
-
+  /**
+   * Adds the inputted value to the arms setpoint
+   * 
+   */
   public void setMotor(double speed)
   {
-    ArmMotor.set(speed);
+    ArmSetpoint += speed;
   }
   public void setArmHigh()
   {
@@ -79,6 +83,6 @@ public class ClimberSubsystem extends SubsystemBase {
   }
   public void setArmClimb()
   {
-    ArmSetpoint = 100;
+    ArmSetpoint = 70;
   }
 }
