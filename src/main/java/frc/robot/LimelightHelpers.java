@@ -22,6 +22,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.TimestampedDoubleArray;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -1260,5 +1261,12 @@ public class LimelightHelpers {
         }
 
         return results;
+    }
+    public static void outputToSmartDashboard()
+    {
+        Pose2d pose = getBotPose2d("limelight");
+        SmartDashboard.putNumber("bot X", pose.getX());
+        SmartDashboard.putNumber("bot Y", pose.getY());
+        //SmartDashboard.putData("bot pose", pose);
     }
 }

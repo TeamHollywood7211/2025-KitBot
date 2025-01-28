@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
      * of how to use vision should be tuned per-robot and to the team's specification.
      */
     if (kUseLimelight) {
-      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
+      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight"); //We may need to do some if(side = redSide) then do wpiRed shenanigans later idk tho waiting on those April Tags!!! 
       if (llMeasurement != null) {
         m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, Utils.fpgaToCurrentTime(llMeasurement.timestampSeconds));
       }
