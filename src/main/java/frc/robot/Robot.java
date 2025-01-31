@@ -6,6 +6,8 @@ package frc.robot;
 
 import com.ctre.phoenix6.Utils;
 
+import edu.wpi.first.math.VecBuilder;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -15,7 +17,7 @@ public class Robot extends TimedRobot {
 
   private final RobotContainer m_robotContainer;
 
-  private final boolean kUseLimelight = false;
+  private final boolean kUseLimelight = true;
 
   public Robot() {
     m_robotContainer = new RobotContainer();
@@ -25,6 +27,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
 
+   
     /*
      * This example of adding Limelight is very simple and may not be sufficient for on-field use.
      * Users typically need to provide a standard deviation that scales with the distance to target
@@ -34,9 +37,17 @@ public class Robot extends TimedRobot {
      * of how to use vision should be tuned per-robot and to the team's specification.
      */
     if (kUseLimelight) {
-      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight"); //We may need to do some if(side = redSide) then do wpiRed shenanigans later idk tho waiting on those April Tags!!! 
-      if (llMeasurement != null) {
-        m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, Utils.fpgaToCurrentTime(llMeasurement.timestampSeconds));
+      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
+      if (llMeasurement != null && llMeasurement.tagCount > 0) {
+        boolean rejectUpdate = false;
+        if (llMeasurement.tagCount == 1 && llMeasurement.rawFiducials.length == 1) {
+          if (llMeasurement.rawFiducials[0].ambiguity > 0.7 || llMeasurement.rawFiducials[0].distToCamera > 3) {
+            rejectUpdate = true;
+          }
+        }
+        if (!rejectUpdate) {
+          m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
+        }
       }
     }
   }

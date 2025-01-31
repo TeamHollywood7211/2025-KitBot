@@ -34,7 +34,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 public class LimelightHelpers {
 
     private static final Map<String, DoubleArrayEntry> doubleArrayEntries = new ConcurrentHashMap<>();
-
+    private static PoseEstimate poseEstimate;
 
     public static class LimelightTarget_Retro {
 
@@ -567,7 +567,9 @@ public class LimelightHelpers {
         
         if (poseArray.length == 0) {
             // Handle the case where no data is available
-            return null; // or some default PoseEstimate
+            System.out.println("CANT SEE ANY APRIL TAG!!!");
+            //return poseEstimate; // or some default PoseEstimate
+            return null;
         }
     
         var pose = toPose2D(poseArray);
@@ -599,8 +601,8 @@ public class LimelightHelpers {
                 rawFiducials[i] = new RawFiducial(id, txnc, tync, ta, distToCamera, distToRobot, ambiguity);
             }
         }
-    
-        return new PoseEstimate(pose, adjustedTimestamp, latency, tagCount, tagSpan, tagDist, tagArea, rawFiducials);
+        poseEstimate = new PoseEstimate(pose, adjustedTimestamp, latency, tagCount, tagSpan, tagDist, tagArea, rawFiducials);
+        return poseEstimate;
     }
 
     private static RawFiducial[] getRawFiducials(String limelightName) {

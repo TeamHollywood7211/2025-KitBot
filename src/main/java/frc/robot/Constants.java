@@ -16,6 +16,7 @@ public final class Constants {
   public static class IntakeConstants {
 
     public static final int intakeID = 51;
+    public static final int IRSignalID = 0;
     public static final double autoMotorSpeed = 0.25;   //For the intake when run through intakeFwd(), intakeRev(), aka auton
     public static final double teleopMotorSpeed = 0.25;  //For when we control the robot with an actual controller. 
   }

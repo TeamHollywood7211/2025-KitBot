@@ -21,6 +21,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
   /** Creates a new Intake Subsystem. */
   SparkFlex intakeMotor = new SparkFlex(Constants.IntakeConstants.intakeID, MotorType.kBrushless); //Creates the one intake motor 
+  DigitalInput intakeIR = new DigitalInput(Constants.IntakeConstants.IRSignalID);
+
+
 
   public IntakeSubsystem() {}
 

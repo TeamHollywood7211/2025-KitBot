@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
 import frc.robot.Constants.ImportantPositions;
 import frc.robot.Constants.autoConfigConstants;
+import frc.robot.commands.Auto_IntakeWaitForPiece;
 import frc.robot.commands.ClimberCommand;
 
 import frc.robot.commands.IntakeCommand;
@@ -78,6 +79,7 @@ public class RobotContainer {
     private final IntakeCommand m_IntakeCommand = new IntakeCommand(m_IntakeSubsystem, operatorStick);
 
     private final ClimberCommand m_ClimberCommand = new ClimberCommand(m_ClimberSubsystem, operatorStick);
+    private final Auto_IntakeWaitForPiece a_waitForPiece = new Auto_IntakeWaitForPiece(m_IntakeSubsystem);
     // PID
     public final static PIDController ll_rotatePID = new PIDController(0.3, 0, 0.005);
 
@@ -93,10 +95,9 @@ public class RobotContainer {
 
     public RobotContainer() {
 
-        NamedCommands.registerCommand("act_intake_forward", new InstantCommand(m_IntakeSubsystem::motorFwd));
-        NamedCommands.registerCommand("act_intake_reverse", new InstantCommand(m_IntakeSubsystem::motorRev));
-        NamedCommands.registerCommand("act_intake_stop",    new InstantCommand(m_IntakeSubsystem::motorOff));
-
+        NamedCommands.registerCommand("act_intake_eject", new InstantCommand(m_IntakeSubsystem::motorRev));
+        NamedCommands.registerCommand("act_intake_off"   , new InstantCommand(m_IntakeSubsystem::motorOff));
+        NamedCommands.registerCommand("act_wait_for_piece", a_waitForPiece);
 
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
@@ -152,9 +153,9 @@ public class RobotContainer {
         //autoStick.b().onTrue(m_MusicSubsystem.runOnce(() -> m_MusicSubsystem.playSong("chirp/portal.chrp")));
         // OPERATOR STICK
 
-        operatorStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::setArmHigh))  ;
-        operatorStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::setArmClimb))   ;
-        operatorStick.povLeft().onTrue(new InstantCommand(m_ClimberSubsystem::setArmClimb)) ;
+        operatorStick.y().onTrue(new InstantCommand(m_ClimberSubsystem::setArmHigh))     ;
+        operatorStick.b().onTrue(new InstantCommand(m_ClimberSubsystem::setArmClimb))    ;
+        operatorStick.povLeft().onTrue(new InstantCommand(m_ClimberSubsystem::setArmLow));
         //operatorStick.leftTrigger().onTrue(m_IntakeCommand);
         //operatorStick.rightTrigger().onTrue(m_IntakeCommand);
         //operatorStick.leftTrigger().onFalse(m_IntakeCommand);
