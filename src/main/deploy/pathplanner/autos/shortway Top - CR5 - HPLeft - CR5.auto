@@ -17,6 +17,18 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_off"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CR5-HP TOP"
@@ -41,6 +53,18 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_off"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CR5-HP TOP"
@@ -65,6 +89,18 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_off"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CR5-HP TOP"
@@ -86,6 +122,18 @@
           "type": "named",
           "data": {
             "name": "act_intake_eject"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "act_intake_off"
           }
         }
       ]
